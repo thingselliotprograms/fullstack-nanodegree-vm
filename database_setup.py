@@ -23,5 +23,27 @@ class MenuItem(Base):
     restaurant = relationship(Restaurant)
 
 
+
+
+
 engine = create_engine('sqlite:///restaurantmenu.db')
+Base.metadata.create_all(engine)
+
+
+Base = declarative_base()
+
+class Employee(Base):
+    __tablename__ = 'employee'
+    name = Column(String(250), nullable=False)
+    id = Column(Integer, primary_key=True)
+
+class Address(Base):
+    __tablename__ = 'address'
+    street = Column(String(80), nullable=False)
+    zip = Column(String(5), nullable=False)
+    id = Column(Integer, primary_key=True)
+    employee_id = Column(Integer,ForeignKey('employee.id'))
+    employee = relationship(Employee)
+
+engine = create_engine('sqlite:///employeeData.db')
 Base.metadata.create_all(engine)
