@@ -9,8 +9,9 @@
     {% for i in restaurantList %}
     <div>
         <h2>{{i.name}}</h2>
+        <h3><a href="{{url_for('restaurantMenu',restaurant_id=i.id)}}">View Menu</a></h3>
         <a href='{{url_for('editRestaurant',restaurant_id=i.id)}}'>Edit</a>
-        <a href='#'>Delete</a>
+        <a href='{{url_for('deleteRestaurant',restaurant_id=i.id)}}'>Delete</a>
         <br /><br />
     </div>
     {% endfor %}
